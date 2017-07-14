@@ -1,6 +1,6 @@
 
 $rgName = "ReadyLab-Networking"
-#$templateUri = "https://raw.githubusercontent.com/victorar/azure-hybrid-networking/master/Ready-Labs/HubAndSpoke/azuredeploy.json"
+$templateUri = "https://raw.githubusercontent.com/victorar/azure-hybrid-networking/master/Ready-Labs/ExpressRouteGW/azuredeploy.json"
 
 Login-AzureRmAccount
 
@@ -11,6 +11,6 @@ $templateParams = @{
 New-AzureRmResourceGroupDeployment `
         -Name "DeployNetworkResources" `
         -ResourceGroupName $rgName `
-        -TemplateFile .\ExpressRouteGW\azuredeploy.json `
+        -TemplateUri $templateUri `
         -TemplateParameterObject $templateParams `
         -Verbose
