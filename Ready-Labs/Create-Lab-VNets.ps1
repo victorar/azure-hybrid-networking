@@ -1,6 +1,7 @@
 
 $rgName = "ReadyLab-Networking"
 $location = "West Europe"
+$templateUri = "https://raw.githubusercontent.com/victorar/azure-hybrid-networking/master/Ready-Labs/HubAndSpoke/azuredeploy.json"
 
 Login-AzureRmAccount
 
@@ -8,5 +9,5 @@ New-AzureRmResourceGroup -Name $rgName -Location $location
 New-AzureRmResourceGroupDeployment `
         -Name "DeployNetworkResources" `
         -ResourceGroupName $rgName `
-        -TemplateFile .\azuredeploy.json `
+        -TemplateUri $templateUri `
         -Verbose
