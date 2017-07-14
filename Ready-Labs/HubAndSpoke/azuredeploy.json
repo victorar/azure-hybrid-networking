@@ -1,0 +1,132 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "hubVNetName": {
+      "type": "string",
+      "defaultValue": "Hub-VNet",
+      "metadata": {
+        "description": "Hub VNet name"
+      }
+    },
+    "hubVNetAddressPrefix": {
+      "type": "string",
+      "defaultValue": "192.168.2.0/24",
+      "metadata": {
+        "description": "Address space of Hub VNet"
+      }
+    },
+    "hubVNetSubnet1Name": {
+      "type": "string",
+      "defaultValue": "Subnet1",
+      "metadata": {
+        "description": "Subnet 1 Name of Hub VNet"
+      }
+    },
+    "hubVNetSubnet1Prefix": {
+      "type": "string",
+      "defaultValue": "192.168.2.0/25",
+      "metadata": {
+        "description": "Subnet 1 prefix of Hub VNet"
+      }
+    },
+    "hubVNetGWSubnetName": {
+      "type": "string",
+      "defaultValue": "GatewaySubnet",
+      "allowedValues": [
+        "GatewaySubnet"
+      ],
+      "metadata": {
+        "description": "GatewaySubnet in Hub VNet"
+      }
+    },
+    "hubVNetGWSubnetPrefix": {
+      "type": "string",
+      "defaultValue": "192.168.2.128/27",
+      "metadata": {
+        "description": "Gateway Subnet address prefix"
+      }
+    },
+    "spokeVNetName": {
+      "type": "string",
+      "defaultValue": "Spoke-VNet",
+      "metadata": {
+        "description": "Spoke VNet name"
+      }
+    },
+    "spokeVNetAddressPrefix": {
+      "type": "string",
+      "defaultValue": "10.100.0.0/16",
+      "metadata": {
+        "description": "Address space of Spoke VNet"
+      }
+    },
+    "spokeVNetSubnet1Name": {
+      "type": "string",
+      "defaultValue": "Subnet1",
+      "metadata": {
+        "description": "Subnet 1 name of the Spoke VNet"
+      }
+    },
+    "spokeVNetSubnet1Prefix": {
+      "type": "string",
+      "defaultValue": "10.100.1.0/24",
+      "metadata": {
+        "description": "Subnet 1 prefix of Spoke VNet"
+      }
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "name": "[parameters('hubVNetName')]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2016-03-30",
+      "location": "[resourceGroup().location]",
+      "tags": {},
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('hubVNetAddressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[parameters('hubVNetSubnet1Name')]",
+            "properties": {
+              "addressPrefix": "[parameters('hubVNetSubnet1Prefix')]"
+            }
+          },
+          {
+            "name": "[parameters('hubVNetGWSubnetName')]",
+            "properties": {
+              "addressPrefix": "[parameters('hubVNetGWSubnetPrefix')]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "[parameters('spokeVNetName')]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2016-03-30",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('spokeVNetAddressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[parameters('spokeVNetSubnet1Name')]",
+            "properties": {
+              "addressPrefix": "[parameters('spokeVNetSubnet1Prefix')]"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {}
+}
