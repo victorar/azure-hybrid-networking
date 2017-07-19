@@ -8,11 +8,10 @@ Get-NetIPConfiguration | Where-Object {$_.IPv4DefaultGateway -eq $null} | Rename
 #Get the IP Address of the External Adapter
 $extIPAddress = Get-NetIPAddress -InterfaceAlias External | Where-Object {$_.AddressFamily -eq "IPV4"}
 
-#Get the NAT IP Address as well as the NAT external address space
-$natIP = $extIPAddress.IPAddress
-$netPrefix = $extIPAddress.PrefixLength
-$extAddressPrefix = $natIP.Substring(0,$natIP.LastIndexOf(".")) + ".0/" + $netPrefix
-
-#Configure NAT
-New-NetNat -Name 'NVANAT' -ExternalIPInterfaceAddressPrefix $extAddressPrefix
-Add-NetNatExternalAddress -NatName 'NVANAT' -IPAddress $natIP -PortStart 5000 -PortEnd 49151
+#Configure Routing and NAT gateway
+Install-RemoteAccess -VpnType RoutingOnly
+ 
+cmd.exe /c "netsh routing ip nat install"
+cmd.exe /c "netsh routing ip nat add interface $extNIC"
+cmd.exe /c "netsh routing ip nat set interface $extNIC mode=full"
+cmd.exe /c "netsh routing ip nat add interface $intNIC"
