@@ -12,6 +12,6 @@ $extIPAddress = Get-NetIPAddress -InterfaceAlias External | Where-Object {$_.Add
 Install-RemoteAccess -VpnType RoutingOnly
  
 cmd.exe /c "netsh routing ip nat install"
-cmd.exe /c "netsh routing ip nat add interface $extNIC"
-cmd.exe /c "netsh routing ip nat set interface $extNIC mode=full"
-cmd.exe /c "netsh routing ip nat add interface $intNIC"
+cmd.exe /c "netsh routing ip nat add interface External"
+cmd.exe /c "netsh routing ip nat set interface External mode=full"
+cmd.exe /c "netsh routing ip nat add interface Internal"
