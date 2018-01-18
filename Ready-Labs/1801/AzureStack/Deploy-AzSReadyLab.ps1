@@ -5,6 +5,7 @@ Import-Module C:\AzureStack-Tools-master\Connect\AzureStack.Connect.psm1
 
 $ArmEndpoint = "https://management.local.azurestack.external"
 $GraphAudience = "https://graph.windows.net/"
+$aadTenant   = "yourAADtenant.onmicrosoft.com"
 
 $UserName = 'youruser@yourAADtenant.onmicrosoft.com'
 
@@ -50,6 +51,7 @@ New-AzureRmResourceGroup -Name $rgName -Location $location
 $azsTemplate = "https://raw.githubusercontent.com/victorar/azure-hybrid-networking/master/Ready-Labs/1801/AzureStack/azuredeploy.json"
 
 $azsParams = @{
+    localGatewayIpAddress = "x.x.x.x";          #Public IP Address of the VPN gateway in Azure
     localAddressPrefix1 = "192.168.2.0/24";     #Address space of the hub VNet in Azure
     localAddressPrefix2 = "10.101.0.0/16";      #Address space of the spoke VNet in Azure
     VNetAddressPrefix = "10.51.0.0/16";         #Address space of the Azure Stack VNet
@@ -61,7 +63,7 @@ $azsParams = @{
     adminPassword = "YourAdminPWD"              #Password of the VM administrator
 }
 
-New-AzureRmResourceGroupDeployment -Name "Azs-Resources" `
+New-AzureRmResourceGroupDeployment -Name "Azs-Resources" `            -ResourceGroupName $rgName `            -TemplateFile $azsTemplate `            -TemplateParameterObject $azsParams `            -Verbose
             
 #endregion
 
