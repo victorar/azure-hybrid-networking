@@ -15,7 +15,7 @@
         },
         "localGatewayName": {
             "type": "string",
-            "defaultValue": "localGateway",
+            "defaultValue": "AzsLNG",
             "metadata": {
                 "description": "Arbitrary name for gateway resource representing your local/on-prem gateway"
             }
@@ -40,7 +40,7 @@
         },
         "virtualNetworkName": {
             "type": "string",
-            "defaultValue": "azureVNet",
+            "defaultValue": "AzsVNet",
             "metadata": {
                 "description": "Arbitrary name for the Azure Virtual Network"
             }
@@ -75,14 +75,14 @@
         },
         "gatewayPublicIPName": {
             "type": "string",
-            "defaultValue": "azureGatewayIP",
+            "defaultValue": "AzsGatewayIP",
             "metadata": {
                 "description": "Arbitrary name for public IP resource used for the new azure gateway"
             }
         },
         "gatewayName": {
             "type": "string",
-            "defaultValue": "azureGateway",
+            "defaultValue": "AzsGateway",
             "metadata": {
                 "description": "Arbitrary name for the new gateway"
             }
@@ -101,7 +101,7 @@
         },
         "connectionName": {
             "type": "string",
-            "defaultValue": "Azure-to-Onprem",
+            "defaultValue": "Azs-to-Azure",
             "metadata": {
                 "description": "Arbitrary name for the new connection between Azure VNet and other network"
             }

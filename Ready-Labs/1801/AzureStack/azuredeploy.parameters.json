@@ -1,0 +1,36 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "localGatewayIpAddress": {
+            "value": "13.80.147.128"
+        },
+        "localAddressPrefix1":{
+            "value": "192.168.2.0/24"
+        },
+        "localAddressPrefix2":{
+            "value": "10.101.0.0/16"
+        },                
+        "VNetAddressPrefix": {
+            "value": "10.51.0.0/16"
+        },
+        "subnetPrefix": {
+            "value": "10.51.1.0/24"
+        },
+        "gatewaySubnetPrefix": {
+            "value": "10.51.0.0/24"
+        },                        
+        "sharedKey": {
+            "value": "abc123"
+        },
+        "vmName": {
+            "value": "AZSVM01"
+        },
+        "adminUsername": {
+            "value": "azsadmin"
+        },
+        "adminPassword": {
+            "value": "YourOwnPassword"
+        }
+    }
+}
