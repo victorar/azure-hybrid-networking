@@ -63,7 +63,7 @@ $azsParams = @{
     adminPassword = "YourAdminPWD"              #Password of the VM administrator
 }
 
-New-AzureRmResourceGroupDeployment -Name "Azs-Resources" `            -ResourceGroupName $rgName `            -TemplateFile $azsTemplate `            -TemplateParameterObject $azsParams `            -Verbose
+New-AzureRmResourceGroupDeployment -Name "Azs-Resources" -ResourceGroupName $rgName -TemplateFile $azsTemplate -TemplateParameterObject $azsParams -Verbose
             
 #endregion
 
