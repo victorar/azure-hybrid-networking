@@ -1,0 +1,60 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "localGatewayName": {
+            "value": "AzsLNG"
+        },
+        "localGatewayIpAddress": {
+            "value": "13.80.147.128"
+        },
+        "localBgpPeeringAddress":{
+            "value": "10.1.0.2"
+        },
+        "localASN":{
+            "value": 65500
+        },
+        "virtualNetworkName": {
+            "value": "AzsVNet"
+        },                
+        "VNetAddressPrefix": {
+            "value": "10.51.0.0/16"
+        },
+        "subnetName": {
+            "value": "Subnet1"
+        },
+        "subnetPrefix": {
+            "value": "10.51.1.0/24"
+        },
+        "gatewaySubnetPrefix": {
+            "value": "10.51.0.0/24"
+        },
+        "gatewayPublicIPName": {
+            "value": "AzsGatewayIP"
+        },
+        "gatewayName": {
+            "value": "AzsGateway"
+        },
+        "gatewaySku": {
+            "value": "HighPerformance"
+        },
+        "gatewayASN": {
+            "value": 65010
+        },                        
+        "sharedKey": {
+            "value": "abc123"
+        },
+        "connectionName": {
+            "value": "Azs-to-Azure"
+        },
+        "vmName": {
+            "value": "AZSVM01"
+        },
+        "adminUsername": {
+            "value": "azsadmin"
+        },
+        "adminPassword": {
+            "value": "Y0ur@dminPWD"
+        }
+    }
+}
