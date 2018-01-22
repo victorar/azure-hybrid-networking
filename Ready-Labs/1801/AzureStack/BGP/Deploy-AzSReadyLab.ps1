@@ -48,7 +48,7 @@ New-AzureRmResourceGroup -Name $rgName -Location $location
 
 #region 5. Deploy resources in Azure Stack (VNet, Gateway, VM)
 
-$azsTemplate = "https://raw.githubusercontent.com/victorar/azure-hybrid-networking/master/Ready-Labs/1801/AzureStack/azuredeploy.json"
+$azsTemplate = "https://raw.githubusercontent.com/victorar/azure-hybrid-networking/master/Ready-Labs/1801/AzureStack/BGP/azuredeploy.json"
 
 $azsParams = @{
     localGatewayIpAddress = "13.80.147.128";    #Public IP Address of the VPN gateway in Azure
@@ -66,7 +66,7 @@ $azsParams = @{
     adminPassword = "Y0ur@dminPWD"              #Password of the VM administrator
 }
 
-New-AzureRmResourceGroupDeployment -Name "Azs-Resources" -ResourceGroupName $rgName -TemplateFile $azsTemplate -TemplateParameterObject $azsParams -Verbose
+New-AzureRmResourceGroupDeployment -Name "Azs-Resources" -ResourceGroupName $rgName -TemplateUri $azsTemplate -TemplateParameterObject $azsParams -Verbose
 
 #Obtain BGP Peering IP address of the Azure Stack VPN gateway
 $vnetGw = Get-AzureRmVirtualNetworkGateway -Name $azsParams.gatewayName -ResourceGroupName $rgName
